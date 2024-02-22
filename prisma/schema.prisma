@@ -37,7 +37,7 @@ model Host {
   listings       Property[]
 }
 
-// bokking...
+// booking...
 
 model Booking {
   id             String   @id @default(uuid())
