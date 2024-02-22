@@ -54,7 +54,7 @@ async function main() {
       update: {},
       create: {
         id: booking.id,
-        checkingDate: booking.checkingDate,
+        checkinDate: booking.checkinDate,
         checkoutDate: booking.checkoutDate,
         numberOfGuests: booking.numberOfGuests,
         totalPrice: booking.totalPrice,
