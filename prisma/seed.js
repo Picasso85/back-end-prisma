@@ -54,7 +54,7 @@ async function main() {
       update: {},
       create: {
         id: booking.id,
-        checkinDate: booking.checkinDate,
+        checkingDate: booking.checkingDate,
         checkoutDate: booking.checkoutDate,
         numberOfGuests: booking.numberOfGuests,
         totalPrice: booking.totalPrice,
@@ -67,10 +67,12 @@ async function main() {
 
   for (const property of properties) {
     const existingAmenities = await prisma.amenity.findMany();
-    const amenitiesToConnect = existingAmenities.filter(amenity =>
-      property.amenitis.includes(amenity.name)
+    const amenitiesToConnect = existingAmenities.filter((amenity) =>
+      property.amenities.includes(amenity.name)
     );
-    const amenityIds = amenitiesToConnect.map(amenity => ({ id: amenity.id }));
+    const amenityIds = amenitiesToConnect.map((amenity) => ({
+      id: amenity.id,
+    }));
     await prisma.property.upsert({
       where: { id: property.id },
       update: {},
@@ -87,7 +89,7 @@ async function main() {
         host: {
           connect: { id: property.hostId },
         },
-        amenitis: {
+        amenities: {
           connect: amenityIds,
         },
       },
@@ -117,7 +119,7 @@ main()
   .then(async () => {
     await prisma.$disconnect();
   })
-  .catch(async e => {
+  .catch(async (e) => {
     console.error(e);
     await prisma.$disconnect();
     process.exit(1);

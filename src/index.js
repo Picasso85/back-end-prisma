@@ -17,7 +17,7 @@ import errorHandler from "./utils/errorHandler.js";
 
 const app = express();
 
-// TODO: Add Sentry.io integration
+// TODO: Add Sentry.io integration... something else? Maybe...
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
