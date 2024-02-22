@@ -52,16 +52,7 @@ async function main() {
     await prisma.booking.upsert({
       where: { id: booking.id },
       update: {},
-      create: {
-        id: booking.id,
-        checkinDate: booking.checkinDate,
-        checkoutDate: booking.checkoutDate,
-        numberOfGuests: booking.numberOfGuests,
-        totalPrice: booking.totalPrice,
-        bookingStatus: booking.bookingStatus,
-        userId: booking.userId,
-        propertyId: booking.propertyId,
-      },
+      create: booking,
     });
   }
 
@@ -86,9 +77,7 @@ async function main() {
         bathRoomCount: property.bathRoomCount,
         maxGuestCount: property.maxGuestCount,
         rating: property.rating,
-        host: {
-          connect: { id: property.hostId },
-        },
+        hostId: property.hostId,
         amenities: {
           connect: amenityIds,
         },
@@ -100,17 +89,7 @@ async function main() {
     await prisma.review.upsert({
       where: { id: review.id },
       update: {},
-      create: {
-        id: review.id,
-        rating: review.rating,
-        comment: review.comment,
-        user: {
-          connect: { id: review.userId },
-        },
-        property: {
-          connect: { id: review.propertyId },
-        },
-      },
+      create: review,
     });
   }
 }
