@@ -10,7 +10,7 @@ const authMiddleware = (req, res, next) => {
 
   jwt.verify(token, secretKey, (err, decoded) => {
     if (err) {
-      return res.status(403).json({ message: "denied" });
+      return res.status(403).json({ message: "Invalid token provided!" });
     }
     req.user = decoded;
     next();
