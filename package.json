@@ -5,21 +5,24 @@
   "description": "Your REST API for managing bookings",
   "main": "src/index.js",
   "prisma": {
-    "seed": "node ./prisma/seed.js",
+    "seed": "node ./prisma/seed.js"
+  },
   "scripts": {
     "dev": "nodemon src/index.js",
     "test-positive": "newman run \"./postman/collections/Bookings API.json\" -e \"./postman/environments/Local.postman_environment.json\"",
     "test-negative": "newman run \"./postman/collections/Bookings API Negative.json\" -e \"./postman/environments/Local.postman_environment.json\"",
     "test": "npm run test-positive && npm run test-negative"
   },
-  "author": "",
+  "author": "PHL",
   "license": "MIT",
   "dependencies": {
+    "@prisma/client": "^5.10.2",
     "@sentry/node": "^7.102.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "node": "^21.6.2",
+    "prisma": "^5.10.2",
     "uuid": "^9.0.1",
     "winston": "^3.11.0"
   },
