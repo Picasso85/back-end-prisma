@@ -47,16 +47,18 @@ router.post("/", auth, async (req, res, next) => {
     );
     res.status(201).json(newUser);
   } catch (error) {
+    res.status(400).json({
+      message: `Failed to create User. Please check your request.`,
+    });
     next(error);
   }
 });
-
 router.put("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, username, password, phoneNumber, email, profilePicture } =
       req.body;
-    const user = await updateUserById(id, {
+    const user = await updateUser(id, {
       name,
       username,
       password,
