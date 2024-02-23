@@ -20,6 +20,7 @@
     "@sentry/node": "^7.102.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-oauth2-jwt-bearer": "^1.6.0",
     "jsonwebtoken": "^9.0.2",
     "node": "^21.6.2",
     "node.js": "^0.0.1-security",
