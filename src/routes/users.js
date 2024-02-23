@@ -47,28 +47,33 @@ router.post("/", auth, async (req, res, next) => {
     );
     res.status(201).json(newUser);
   } catch (error) {
+    res.status(400).json({
+      message: `Failed to create User. Please check your request.`,
+    });
     next(error);
   }
 });
-
 router.put("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { username, password, name, email, phoneNumber, profilePicture } =
+    const { name, username, password, phoneNumber, email, profilePicture } =
       req.body;
     const user = await updateUser(id, {
+      name,
       username,
       password,
-      name,
-      email,
       phoneNumber,
+      email,
       profilePicture,
     });
 
-    if (!user) {
-      res.status(404).json({ message: `Could not find user with id ${id}!` });
+    if (user) {
+      res.status(200).send({
+        message: `User with id ${id} successfully updated`,
+        user,
+      });
     } else {
-      res.status(200).json({ message: `User with id ${id} has been updated` });
+      res.status(404).json({ message: `User with id ${id} not found` });
     }
   } catch (error) {
     next(error);
