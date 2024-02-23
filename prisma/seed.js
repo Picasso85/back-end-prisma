@@ -58,8 +58,9 @@ async function main() {
 
   for (const property of properties) {
     const existingAmenities = await prisma.amenity.findMany();
-    const amenitiesToConnect = existingAmenities.filter((amenity) =>
-      property.amenities.includes(amenity.name)
+    const amenitiesToConnect = existingAmenities.filter(
+      (amenity) =>
+        property.amenities && property.amenities.includes(amenity.name)
     );
     const amenityIds = amenitiesToConnect.map((amenity) => ({
       id: amenity.id,
