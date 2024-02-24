@@ -18,6 +18,7 @@ import errorHandler from "./utils/errorHandler.js";
 const app = express();
 
 // TODO: Add Sentry.io integration... something else? Maybe...
+// Sentry.init({ dsn: process.env.SENTRY_DSN });
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
@@ -52,9 +53,9 @@ app.use("/reviews", reviewsRouter);
 
 app.get("/", (req, res) => {
   const html =
-    "<h1>Booking-API</h1><h2>Welcome to our BOOKING_API</h2><p>By using: GET - POST - PUT & DELETE you can handle the bookings!</p>";
+    "<h1>Booking-api</h1><h2>Welcome to our BOOKING_API</h2><p>By using: GET - POST - PUT & DELETE you can handle the bookings!</p>";
   res.send(html);
-  res.send("Booking-API");
+  res.send("Booking-api");
 });
 
 app.use(Sentry.Handlers.errorHandler());
